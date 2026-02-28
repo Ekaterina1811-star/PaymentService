@@ -2,11 +2,11 @@ from django.core.cache import cache
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 
+from server.apps.core.pagination import CustomPagination
 from server.apps.payment.filters import PaymentFilter
 from server.apps.payment.models import Payment
 from server.apps.payment.serializers import PaymentSerializer
 from server.apps.payment.tasks import send_payment_confirmation_task
-from server.apps.core.email import create_payment_confirmation_email
 
 
 class PaymentViewset(viewsets.ModelViewSet):
@@ -33,6 +33,7 @@ class PaymentViewset(viewsets.ModelViewSet):
     """
     queryset = Payment.objects.order_by("-created_at")
     serializer_class = PaymentSerializer
+    pagination_class = CustomPagination
     filterset_class = PaymentFilter
 
     def get_permissions(self):
@@ -69,15 +70,7 @@ class PaymentViewset(viewsets.ModelViewSet):
         """
         user = self.request.user
         payment = serializer.save(contributor=user)
-        user_email = user.email
-        collect_instance = serializer.validated_data["collect"]
-        paid_sum = serializer.validated_data["sum"]
-        email_message = create_payment_confirmation_email(
-            user.first_name,
-            collect_instance.name,
-            paid_sum,
-        )
-        send_payment_confirmation_task(self.request.user.id, payment.id)
+        send_payment_confirmation_task.delay(self.request.user.id, payment.id)
         cache.delete("payments_list")
         cache.delete("collects_list")
 
