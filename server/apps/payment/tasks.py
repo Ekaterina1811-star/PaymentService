@@ -21,7 +21,7 @@ def send_payment_confirmation_task(user_id, payment_id):
     Отправляет электронное сообщение на указанный адрес.
 
     :param user_id: Id получателя.
-    :param msg: Id денежного сбора.
+    :param payment_id: Id платежа.
     """
     user = User.objects.filter(id=user_id).first()
     payment = Payment.objects.filter(id=payment_id).first()
