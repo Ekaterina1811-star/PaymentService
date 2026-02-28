@@ -1,23 +1,28 @@
 import os
-import structlog
 
+import structlog
 from celery import shared_task
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 
-from server.apps.payment.models import Payment
 from server.apps.core.email import create_payment_confirmation_email
+from server.apps.payment.models import Payment
 
 
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-
-
 logger = structlog.get_logger(__name__)
 User = get_user_model()
 
 
 @shared_task
 def send_payment_confirmation_task(user_id, payment_id):
+    """
+    Асинхронная задача отправки электронного сообщения.
+    Отправляет электронное сообщение на указанный адрес.
+
+    :param user_id: Id получателя.
+    :param msg: Id денежного сбора.
+    """
     user = User.objects.filter(id=user_id).first()
     payment = Payment.objects.filter(id=payment_id).first()
     if user and payment:

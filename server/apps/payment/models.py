@@ -10,7 +10,13 @@ User = get_user_model()
 
 class Payment(CreateUpdateDateModelMixin):
     """
-    Модель платежа
+    Модель для платежей.
+    Описывает платежи и их атрибуты.
+
+    Attributes:
+        - contributor: Пользователь, сделавший платеж.
+        - collect: Сбор, к которому относится платеж.
+        - sum: Сумма платежа.
     """
     contributor = models.ForeignKey(
         User,

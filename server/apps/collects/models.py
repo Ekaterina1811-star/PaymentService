@@ -10,12 +10,13 @@ User = get_user_model()
 class Occasion(models.Model):
     """
     Модель для поводов сборов
+    Attributes:
+    - name: Название повода сбора.
     """
     name = models.CharField(
         max_length=20,
         verbose_name="Название повода"
     )
-
 
     def __str__(self):
         return self.name
@@ -24,6 +25,15 @@ class Occasion(models.Model):
 class Collect(CreateUpdateDateModelMixin):
     """
     Модель для групповых денежных сборов
+
+    Attributes:
+    - author: Автор сбора.
+    - name: Название сбора.
+    - occasion: Повод сбора.
+    - description: Описание сбора.
+    - final_sum: Целевая сумма сбора.
+    - collect_image: Обложка сбора.
+    - completion_datetime: Целевая дата завершения сбора.
     """
     name = models.CharField(
         max_length=20,

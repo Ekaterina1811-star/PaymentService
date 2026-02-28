@@ -35,7 +35,6 @@ class PaymentViewset(viewsets.ModelViewSet):
     serializer_class = PaymentSerializer
     filterset_class = PaymentFilter
 
-
     def get_permissions(self):
         """
         Возвращает разрешения в зависимости от действия
@@ -50,7 +49,6 @@ class PaymentViewset(viewsets.ModelViewSet):
         }
         return action_permissions.get(self.action, super().get_permissions())
 
-
     def list(self, request, *args, **kwargs):
         """
         Возвращает список платежей с применением кэширования.
@@ -63,7 +61,6 @@ class PaymentViewset(viewsets.ModelViewSet):
         response = super().list(request, *args, **kwargs)
         cache.set(cache_key, response.data, 60 * 15)
         return response
-
 
     def perform_create(self, serializer):
         """
@@ -84,7 +81,6 @@ class PaymentViewset(viewsets.ModelViewSet):
         cache.delete("payments_list")
         cache.delete("collects_list")
 
-
     def perform_update(self, serializer):
         """
         Обновляет данные платежа
@@ -96,7 +92,6 @@ class PaymentViewset(viewsets.ModelViewSet):
             cache.delete("collects_list")
         except Exception as error:
             return Response(str(error), status=status.HTTP_400_BAD_REQUEST)
-
 
     def perform_destroy(self, instance):
         """
