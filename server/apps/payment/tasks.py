@@ -1,1 +1,40 @@
+import os
+import structlog
 
+from celery import shared_task
+from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
+
+from server.apps.payment.models import Payment
+from server.apps.core.email import create_payment_confirmation_email
+
+
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+
+logger = structlog.get_logger(__name__)
+User = get_user_model()
+
+
+@shared_task
+def send_payment_confirmation_task(user_id, payment_id):
+    user = User.objects.filter(id=user_id).first()
+    payment = Payment.objects.filter(id=payment_id).first()
+    if user and payment:
+        email_message = create_payment_confirmation_email(
+            user.first_name,
+            payment.collect.name,
+            payment.sum,
+        )
+        send_mail(
+            "Payment Service: Групповые денежные сборы",
+            email_message,
+            DEFAULT_FROM_EMAIL,  # Адрес почты, с которой будут отправляться письма
+            [user.email],
+            fail_silently=False,
+        )
+    else:
+        if not user:
+            logger.info("User not found", user_id=user_id)
+        if not payment:
+            logger.info("Payment not found", payment_id=payment_id)
