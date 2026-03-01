@@ -10,3 +10,7 @@ class CreateUpdateDateModelMixin(models.Model):
         verbose_name="Дата изменения",
         auto_now_add=True,
     )
+
+    class Meta:
+        abstract = True
+
