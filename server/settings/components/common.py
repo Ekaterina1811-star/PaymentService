@@ -20,8 +20,13 @@ SECRET_KEY = config('DJANGO_SECRET_KEY')
 # Application definition:
 
 INSTALLED_APPS: tuple[str, ...] = (
+    # filters and DRF
+    'django_filters',
+    'rest_framework',
     # Your apps go here:
     'server.apps.main',
+    'server.apps.collects',
+    'server.apps.payment',
     # Default django apps:
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +45,9 @@ INSTALLED_APPS: tuple[str, ...] = (
     'health_check.db',
     'health_check.cache',
     'health_check.storage',
+    # else
+    'drf_yasg',
+    'djoser',
 )
 
 MIDDLEWARE: tuple[str, ...] = (

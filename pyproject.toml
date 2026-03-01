@@ -38,6 +38,8 @@ djangorestframework = "^3.16.1"
 django-filter = "^25.2"
 celery = "^5.6.2"
 drf-yasg = "^1.21.15"
+djoser = "^2.3.3"
+faker = "^40.5.1"
 
 
 [tool.poetry.group.dev.dependencies]
