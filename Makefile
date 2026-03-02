@@ -8,7 +8,7 @@ stop: ## stop services for development
 
 .PHONY: restart
 restart: ## Reload services (restart without rebuild)
-  @sudo docker compose restart
+	@sudo docker compose restart
 
 .PHONY: makemigrations
 makemigrations: ## Run makemigrations

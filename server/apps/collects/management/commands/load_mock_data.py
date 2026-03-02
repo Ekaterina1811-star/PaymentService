@@ -33,7 +33,7 @@ class Command(BaseCommand):
         )
         # Создание поводов
         occasions = [
-            Occasion.objects.create(name=fake.word()) for _ in range(20)
+            Occasion.objects.create(name=fake.word()[:20]) for _ in range(20)
         ]
 
         # Создание пользователей
@@ -42,7 +42,7 @@ class Command(BaseCommand):
             # Добавим индекс к email, чтобы были уникальные
             email = f"user{i}_{fake.email()}"
             user = User.objects.create(
-                username=fake.user_name(),
+                username=f"user_{i}_{fake.user_name()}",
                 email=email,
                 password="SuperSecretPassword",
             )
@@ -54,7 +54,7 @@ class Command(BaseCommand):
         for _ in range(100):
             collect = Collect.objects.create(
                 author=fake.random_element(users),
-                name=fake.sentence(nb_words=4),
+                name=fake.sentence(nb_words=4)[:20],
                 occasion=fake.random_element(occasions),
                 description=fake.text(),
                 final_sum=fake.random_number(digits=6),
@@ -71,5 +71,5 @@ class Command(BaseCommand):
                 collect=fake.random_element(collects),
                 sum=randint(10, 1000)
             )
-            self.stdout.write(self.style.SUCCESS("Payments are created"))
+        self.stdout.write(self.style.SUCCESS("Payments are created"))
         self.stdout.write(self.style.SUCCESS("Test data are created successfully!"))
