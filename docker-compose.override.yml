@@ -10,6 +10,10 @@
 #  $ docker compose up
 
 services:
+  redis:
+    ports:
+      - 6379:6379
+
   web:
     ports:
       # We only bind ports directly in development:
@@ -22,3 +26,7 @@ services:
       args:
         - UID=${UID:-1000}
         - GID=${GID:-1000}
+
+  celery:
+    volumes:
+      - .:/code

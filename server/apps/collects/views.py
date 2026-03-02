@@ -60,7 +60,7 @@ class CollectViewSet(viewsets.ModelViewSet):
             # Считаем количество уникальных участников. distinct=True,
             # чтобы один и тот же человек не посчитался дважды.
             contributors_count=Count('payment__contributor', distinct=True)
-        ).order_by('-created_datetime')
+        ).order_by('-created_at')
 
     def get_permissions(self):
         """

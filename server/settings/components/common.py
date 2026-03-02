@@ -217,9 +217,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-DJOSER = {
-    "LOGIN_FIELD": "email",
-}
+DJOSER = {}
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
