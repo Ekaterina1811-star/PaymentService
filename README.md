@@ -55,7 +55,7 @@ You will need:
 
 ## Documentation
 
-Full documentation is available here: [`docs/documents/`](docs).
+Full documentation is available here: [`docs/documents/`](docs/documents).
 
 ## 🐳 Запуск проекта локально в Docker-контейнерах с помощью Docker Compose
 ###
