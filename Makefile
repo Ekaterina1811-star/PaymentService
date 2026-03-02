@@ -1,10 +1,14 @@
 .PHONY: up
-up: create_network ## up services for development
-	@docker compose up
+up: ## up services for development
+	@sudo docker compose up
 
-.PHONY: reload
-reload: ## Reload services (restart without rebuild)
-    @docker compose restart
+.PHONY: stop
+stop: ## stop services for development
+	@sudo docker compose stop
+
+.PHONY: restart
+restart: ## Reload services (restart without rebuild)
+  @sudo docker compose restart
 
 .PHONY: makemigrations
 makemigrations: ## Run makemigrations
@@ -13,6 +17,10 @@ makemigrations: ## Run makemigrations
 .PHONY: migrate
 migrate: ## Run migrate
 	@sudo docker compose exec web python manage.py migrate
+
+.PHONY: create-test-data
+create-test-data: ## create test data in DB
+	@sudo docker compose exec web python manage.py load_mock_data
 
 .PHONY: shell
 shell: ## Open Django shell
