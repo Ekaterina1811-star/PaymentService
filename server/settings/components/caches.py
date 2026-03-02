@@ -5,7 +5,11 @@ CACHES = {
     'default': {
         # TODO: use some other cache in production,
         # like https://github.com/jazzband/django-redis
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
     },
 }
 
@@ -14,3 +18,7 @@ CACHES = {
 # https://django-axes.readthedocs.io/en/latest/4_configuration.html#configuring-caches
 
 AXES_CACHE = 'default'
+
+# Celery settings
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379"

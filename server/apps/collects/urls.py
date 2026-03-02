@@ -7,8 +7,8 @@ from server.apps.collects.views import CollectViewSet, OccasionViewSet
 router = DefaultRouter()
 
 
-router.register(r"server.apps.collects", CollectViewSet)
-router.register(r"server.apps.occasion", OccasionViewSet)
+router.register(r"collects", CollectViewSet)
+router.register(r"occasion", OccasionViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

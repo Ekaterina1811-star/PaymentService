@@ -8,6 +8,7 @@ For the full list of settings and their config, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
 
 from server.settings.components import BASE_DIR, config
@@ -205,3 +206,22 @@ EMAIL_TIMEOUT = 5
 
 SWAGGER_USE_COMPAT_RENDERERS = False
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+DJOSER = {
+    "LOGIN_FIELD": "email",
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}

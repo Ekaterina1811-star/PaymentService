@@ -7,8 +7,6 @@ set -o pipefail
 readonly cmd="$*"
 
 # Here you can place any logic that you want to execute on `entrypoint`.
-python /code/manage.py makemigrations --noinput
-python /code/manage.py migrate --noinput
 
 
 echo "Service is up: $cmd"
