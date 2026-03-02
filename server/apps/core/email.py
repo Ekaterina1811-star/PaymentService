@@ -1,9 +1,9 @@
 def create_collect_confirmation_email(
-    first_name, title, description, target_amount, target_date
+    username, title, description, target_amount, target_date
 ):
     """Создает сообщение, подтверждающее создание сбора"""
     email_message = f"""
-                    Привет, {first_name}!
+                    Привет, {username}!
 
                     Вы только что создали новый сбор на нашей платформе.
 
@@ -22,10 +22,10 @@ def create_collect_confirmation_email(
     return email_message
 
 
-def create_payment_confirmation_email(first_name, name, sum):
+def create_payment_confirmation_email(username, name, sum):
     """Создает сообщение, подтверждающее платеж на платформе"""
     email_message = f"""
-                    Привет, {first_name}!
+                    Привет, {username}!
 
                     Ваш платеж успешно принят на нашей платформе.
 

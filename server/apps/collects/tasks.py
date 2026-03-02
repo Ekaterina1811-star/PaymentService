@@ -25,7 +25,7 @@ def send_collect_confirmation_task(user_id, collect_id):
     collect_instance = Collect.objects.filter(id=collect_id).first()
     if user and collect_instance:
         email_message = create_collect_confirmation_email(
-            user.first_name,
+            user.username,
             collect_instance.name,
             collect_instance.description,
             collect_instance.final_sum,

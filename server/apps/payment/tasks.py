@@ -27,7 +27,7 @@ def send_payment_confirmation_task(user_id, payment_id):
     payment = Payment.objects.filter(id=payment_id).first()
     if user and payment:
         email_message = create_payment_confirmation_email(
-            user.first_name,
+            user.username,
             payment.collect.name,
             payment.sum,
         )

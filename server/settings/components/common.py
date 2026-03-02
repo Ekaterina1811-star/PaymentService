@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
+import os
 
 from server.settings.components import BASE_DIR, config
 
@@ -223,3 +224,13 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+# email
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+EMAIL_USE_TLS = bool(os.getenv("EMAIL_USE_TLS", "True"))
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER") # Адрес почты, с которой будут отправляться письма
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD") # Пароль почты, с которой будут отправляться письма
+# В почте надо зайти в раздел безопасности и паролей и указать пароль приложения
+# Также нужно разрешить доступ SMTP/IMAP тоже в почте
+DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")

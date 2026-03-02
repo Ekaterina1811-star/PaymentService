@@ -67,7 +67,7 @@ services:
 
   celery:
     <<: *web
-    command: celery -A celery worker -n default@%n -E -Ofair --max-memory-per-child=200000
+    command: celery -A server worker -n default@%n -E -Ofair --max-memory-per-child=200000
 
   flower:
     image: mher/flower:2.0.1
