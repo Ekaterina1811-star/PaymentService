@@ -234,3 +234,5 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD") # Пароль почты
 # В почте надо зайти в раздел безопасности и паролей и указать пароль приложения
 # Также нужно разрешить доступ SMTP/IMAP тоже в почте
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
+
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS")

@@ -1,9 +1,13 @@
-# payment-service
+# Payment-service
 
+***
 Payment Service
 
 This project was generated with [`wemake-django-template`](https://github.com/wemake-services/wemake-django-template). Current template version is: [55c18b2](https://github.com/wemake-services/wemake-django-template/tree/55c18b2ebcd5b56acd1c1143750c5cd57d2b61ec). See what is [updated](https://github.com/wemake-services/wemake-django-template/compare/55c18b2ebcd5b56acd1c1143750c5cd57d2b61ec...master) since then.
 
+***
+
+## Технологии:
 
 [![wemake.services](https://img.shields.io/badge/%20-wemake.services-green.svg?label=%20&logo=data%3Aimage%2Fpng%3Bbase64%2CiVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC%2FxhBQAAAAFzUkdCAK7OHOkAAAAbUExURQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP%2F%2F%2F5TvxDIAAAAIdFJOUwAjRA8xXANAL%2Bv0SAAAADNJREFUGNNjYCAIOJjRBdBFWMkVQeGzcHAwksJnAPPZGOGAASzPzAEHEGVsLExQwE7YswCb7AFZSF3bbAAAAABJRU5ErkJggg%3D%3D)](https://wemake-services.github.io)
 [![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg)](https://github.com/wemake-services/wemake-python-styleguide)
@@ -17,7 +21,10 @@ This project was generated with [`wemake-django-template`](https://github.com/we
 [![Gunicorn](https://img.shields.io/badge/Gunicorn-%2025.0.2-blue?style=flat-square&logo=gunicorn)](https://gunicorn.org/)
 [![Caddy](https://img.shields.io/badge/Caddy-%20-blue?style=flat-square&logo=caddy)](https://caddyserver.com/)
 
+***
+
 ## Описание
+
  Удобный сервис, с помощью которого можно создавать денежные сборы и управлять ими
 
 ## Функционал

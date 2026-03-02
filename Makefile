@@ -34,6 +34,10 @@ exec: ## Enter web container bash
 createsuperuser: ## Create superuser
 	@sudo docker compose exec web python manage.py createsuperuser
 
+.PHONY: test
+test: ## Run tests
+	@ sudo docker compose exec web pytest tests/ -v
+
 .PHONY: help
 help: ## help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
