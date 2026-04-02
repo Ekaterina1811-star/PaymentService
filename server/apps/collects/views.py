@@ -80,16 +80,11 @@ class CollectViewSet(viewsets.ModelViewSet):
         """
         Возвращает список сборов средств с применением кэширования
         """
-        # Придумываем уникальный ключ для кэша
         cache_key = "collects_list"
-        # Получаем данные из кэша
         cached_data = cache.get(cache_key)
         if cached_data:
-            # Если данные есть в кэше, возвращаем их
             return Response(cached_data)
-        # Если в кэше ничего нет
         response = super().list(request, *args, **kwargs)
-        # Сохраняем результат в кэш на 15 минут перед тем, как его отдать
         cache.set(cache_key, response.data, 60 * 15)
         return response
 
